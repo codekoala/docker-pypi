@@ -8,14 +8,16 @@ Usage
 -----
 
 If you're not dealing with the Git repo but running the container directly from
-the Docker index, you can use a command such as the following:
+the Docker index, you can use commands such as the following:
 
-    docker run -t -i --rm \
-        -h pypi.local \
-        -v /srv/pypi:/srv/pypi:rw \
-        -p 8080:80 \
-        --name pypi \
-        codekoala/pypi
+    sudo mkdir -p /srv/pypi             # local directory where packages reside
+    sudo touch /srv/pypi/.htaccess      # credentials file for adding packages
+    docker run -t -i --rm \             # remove container when stopped
+        -h pypi.local \                 # hostname
+        -v /srv/pypi:/srv/pypi:rw \     # host packages from local directory
+        -p 8080:80 \                    # expose port 80 as port 8080
+        --name pypi \                   # container name
+        codekoala/pypi                  # docker repository
 
 Once running, you should be able to visit http://localhost:8080 to see the
 landing page for your very own PyPI server.
