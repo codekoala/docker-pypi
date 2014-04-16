@@ -7,11 +7,31 @@ versions of packages that are suitable for use with proprietary products.
 Usage
 -----
 
-You can build a new, up-to-date version of the container using the:
+If you're not dealing with the Git repo but running the container directly from
+the Docker index, you can use a command such as the following:
+
+    docker run -t -i --rm \
+        -h pypi.local \
+        -v /srv/pypi:/srv/pypi:rw \
+        -p 8080:80 \
+        --name pypi \
+        codekoala/pypi
+
+Once running, you should be able to visit http://localhost:8080 to see the
+landing page for your very own PyPI server.
+
+You can add Python packages to the server simply by including the tarballs,
+zips, wheels, eggs, etc in your `/srv/pypi` directory.
+
+Building Your Own
+-----------------
+
+You can build a new, up-to-date version of the container by cloning the Git
+repository and using the following command:
 
     make build
 
-command. This will create a new container that just has the latest version of
+This will create a new container that just has the latest version of
 `pypiserver` installed and ready to serve packages out of `/srv/pypi`. To use
 this container, run:
 
