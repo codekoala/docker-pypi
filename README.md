@@ -11,7 +11,7 @@ If you're not dealing with the Git repo but running the container directly from
 the Docker index, you can use commands such as the following:
 
     sudo mkdir -p /srv/pypi             # local directory where packages reside
-    sudo touch /srv/pypi/.htaccess      # credentials file for adding packages
+    sudo touch /srv/pypi/.htpasswd      # credentials file for adding packages
     docker run -t -i --rm \             # remove container when stopped
         -h pypi.local \                 # hostname
         -v /srv/pypi:/srv/pypi:rw \     # host packages from local directory
@@ -49,14 +49,14 @@ Adding Internal Packages
 Internal packages may be uploaded to this PyPI server quite easily. The first
 step is to create a user account:
 
-    htpasswd -s htaccess yourusername
+    htpasswd -s /srv/pypi/.htpasswd yourusername
 
 > You will probably need to re-run `make run` each time you update the
 htaccess file, as it will copy the password file to the correct location
 before launching the server.
 
-> Alternatively, you might be able to just copy the `htaccess` file to
-`/srv/pypi/.htaccess` after each change without restarting your PyPI
+> Alternatively, you might be able to just copy the `htpasswd` file to
+`/srv/pypi/.htpasswd` after each change without restarting your PyPI
 container.
 
 This command (included with Apache on most distributions) will prompt you for a
