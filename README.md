@@ -1,6 +1,8 @@
 PyPI Server
 ===========
 
+[![](https://images.microbadger.com/badges/image/codekoala/pypi.svg)](https://microbadger.com/images/codekoala/pypi "Get your own image badge on microbadger.com")
+
 This is a simple PyPI server that can be used to host internal packages and
 versions of packages that are suitable for use with proprietary products.
 
