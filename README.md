@@ -27,6 +27,18 @@ landing page for your very own PyPI server.
 You can add Python packages to the server simply by including the tarballs,
 zips, wheels, eggs, etc in your `/srv/pypi` directory.
 
+Configuration
+-------------
+
+There are some environment variables that may be set to override the default
+behavior:
+
+* ``PYPI_ROOT``: path within the container where packages will be stored.
+  Defaults to ``/srv/pypi``.
+* ``PYPI_PORT``: port to bind to receive requests. Defaults to ``80``.
+* ``PASSWD_FILE``: path to authentication file. Defaults to
+  ``/srv/pypi/.htpasswd``.
+
 Building Your Own
 -----------------
 
