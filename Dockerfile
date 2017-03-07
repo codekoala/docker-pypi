@@ -1,9 +1,14 @@
-FROM codekoala/saltyarch
+FROM alpine:3.5
 MAINTAINER Josh VanderLinden <codekoala@gmail.com>
 
-RUN pacman -Sy --noconfirm --needed python-pip python-passlib && pip install -U pypiserver && mkdir -p /srv/pypi && rm -rf /var/cache/pacman/*
+RUN apk update && \
+	apk add py-pip && \
+    mkdir -p /srv/pypi
+
+RUN pip install -U passlib pypiserver[cache]==1.2.0
 
 EXPOSE 80
 VOLUME ["/srv/pypi"]
 
-CMD ["pypi-server", "--port", "80", "--passwords", "/srv/pypi/.htpasswd", "/srv/pypi"]
+COPY entrypoint.sh /
+CMD ["/entrypoint.sh"]
