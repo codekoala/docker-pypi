@@ -38,6 +38,8 @@ behavior:
 * ``PYPI_PORT``: port to bind to receive requests. Defaults to ``80``.
 * ``PASSWD_FILE``: path to authentication file. Defaults to
   ``/srv/pypi/.htpasswd``.
+* ``OVERWRITE``: allow existing packages to be overwritten. Defaults to
+  ``false``.
 
 Building Your Own
 -----------------
