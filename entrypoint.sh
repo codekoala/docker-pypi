@@ -2,17 +2,17 @@
 
 PYPI_ROOT="${PYPI_ROOT:-/srv/pypi}"
 PYPI_PORT=${PYPI_PORT:-80}
-PASSWD_FILE="${PASSWD_FILE:-${PYPI_ROOT}/.htpasswd}"
-OVERWRITE=${OVERWRITE:-false}
+PYPI_PASSWD_FILE="${PYPI_PASSWD_FILE:-${PYPI_ROOT}/.htpasswd}"
+PYPI_OVERWRITE=${PYPI_OVERWRITE:-false}
 
 # make sure the passwd file exists
-touch "${PASSWD_FILE}"
+touch "${PYPI_PASSWD_FILE}"
 
 _extra=""
 
 # allow existing packages to be overwritten
-if ${OVERWRITE}; then
+if ${PYPI_OVERWRITE}; then
     _extra="${_extra} --overwrite"
 fi
 
-/usr/bin/pypi-server --port ${PYPI_PORT} --passwords "${PASSWD_FILE}" ${_extra} "${PYPI_ROOT}"
+/usr/bin/pypi-server --port ${PYPI_PORT} --passwords "${PYPI_PASSWD_FILE}" ${_extra} "${PYPI_ROOT}"
