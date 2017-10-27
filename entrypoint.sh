@@ -7,7 +7,7 @@ PYPI_PASSWD_FILE="${PYPI_PASSWD_FILE:-${PYPI_ROOT}/.htpasswd}"
 # make sure the passwd file exists
 touch "${PYPI_PASSWD_FILE}"
 
-_extra=""
+_extra="--fallback-url https://pypi.python.org/simple"
 
 # allow existing packages to be overwritten
 if [[ "${PYPI_OVERWRITE}" != "" ]]; then
