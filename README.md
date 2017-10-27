@@ -40,6 +40,8 @@ behavior:
   ``/srv/pypi/.htpasswd``.
 * ``PYPI_OVERWRITE``: allow existing packages to be overwritten. Defaults to
   ``false``.
+* ``PYPI_AUTHENTICATE``: list of (case-insensitive) actions to authenticate.
+  Default to `update`.
 
 Building Your Own
 -----------------
