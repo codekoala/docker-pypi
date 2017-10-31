@@ -1,15 +1,12 @@
-FROM alpine:3.5
-MAINTAINER Josh VanderLinden <codekoala@gmail.com>
+FROM centos
+MAINTAINER Matthew Benstead
 
-RUN apk update && \
-    apk add py-pip && \
-    pip install --upgrade pip && \
-    mkdir -p /srv/pypi
-
-RUN pip install -U passlib pypiserver[cache]==1.2.0
+RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum install -y python-pip python-passlib && pip install -U pypiserver && mkdir -p /srv/pypi
 
 EXPOSE 80
 VOLUME ["/srv/pypi"]
 
+COPY srv/pypi/ /srv/pypi/
+COPY htpasswd /srv/pypi/.htpasswd
 COPY entrypoint.sh /
 CMD ["/entrypoint.sh"]
