@@ -42,6 +42,7 @@ behavior:
   ``false``.
 * ``PYPI_AUTHENTICATE``: list of (case-insensitive) actions to authenticate.
   Default to `update`.
+* ``PYPI_EXTRA``: any additional parameters to ``pypi-server``.
 
 Building Your Own
 -----------------

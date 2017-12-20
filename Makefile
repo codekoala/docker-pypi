@@ -1,5 +1,5 @@
 IMG := codekoala/pypi
-TAG := 1.2.0
+TAG := 1.2.1
 IMG_TAG := $(IMG):$(TAG)
 
 PYPI ?= /srv/pypi

@@ -8,7 +8,7 @@ PYPI_AUTHENTICATE="${PYPI_AUTHENTICATE:-update}"
 # make sure the passwd file exists
 touch "${PYPI_PASSWD_FILE}"
 
-_extra="--fallback-url https://pypi.python.org/simple"
+_extra="${PYPI_EXTRA}"
 
 # allow existing packages to be overwritten
 if [[ "${PYPI_OVERWRITE}" != "" ]]; then

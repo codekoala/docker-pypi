@@ -6,10 +6,10 @@ RUN apk update && \
     pip install --upgrade pip && \
     mkdir -p /srv/pypi
 
-RUN pip install -U passlib pypiserver[cache]==1.2.0
+RUN pip install -U passlib pypiserver[cache]==1.2.1
 
 EXPOSE 80
 VOLUME ["/srv/pypi"]
 
-COPY entrypoint.sh /
+ADD entrypoint.sh /
 CMD ["/entrypoint.sh"]
