@@ -18,11 +18,11 @@ fi
 exec gunicorn -w4 -b ":${PYPI_PORT}" \
 "\
 pypiserver:app(\
-root=\"${PYPI_ROOT}\", \
+root=\"${PYPI_ROOT}\",\
 port=${PYPI_PORT},\
 password_file=\"${PYPI_PASSWD_FILE}\",\
 authenticated=\"${PYPI_AUTHENTICATE}\",\
 overwrite=${_overwrite},\
-${PYPI_EXTRA}
-)
+${PYPI_EXTRA}\
+)\
 "
