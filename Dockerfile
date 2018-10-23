@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM python:3.7-alpine3.7
 MAINTAINER Josh VanderLinden <codekoala@gmail.com>
 
 RUN apk update && \
@@ -6,7 +6,7 @@ RUN apk update && \
     pip install --upgrade pip && \
     mkdir -p /srv/pypi
 
-RUN pip install -U passlib pypiserver[cache]==1.2.1
+RUN pip install -U passlib pypiserver[cache]==1.2.1 gunicorn==19.9.0
 
 EXPOSE 80
 VOLUME ["/srv/pypi"]

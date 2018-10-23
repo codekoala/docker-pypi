@@ -8,16 +8,21 @@ PYPI_AUTHENTICATE="${PYPI_AUTHENTICATE:-update}"
 # make sure the passwd file exists
 touch "${PYPI_PASSWD_FILE}"
 
-_extra="${PYPI_EXTRA}"
+_overwrite=0
 
 # allow existing packages to be overwritten
 if [[ "${PYPI_OVERWRITE}" != "" ]]; then
-    _extra="${_extra} --overwrite"
+    _overwrite=1
 fi
 
-exec /usr/bin/pypi-server \
-    --port ${PYPI_PORT} \
-    --passwords "${PYPI_PASSWD_FILE}" \
-    --authenticate "${PYPI_AUTHENTICATE}" \
-    ${_extra} \
-    "${PYPI_ROOT}"
+exec gunicorn -w4 -b ":${PYPI_PORT}" \
+"\
+pypiserver:app(\
+root=\"${PYPI_ROOT}\",\
+port=${PYPI_PORT},\
+password_file=\"${PYPI_PASSWD_FILE}\",\
+authenticated=\"${PYPI_AUTHENTICATE}\",\
+overwrite=${_overwrite},\
+${PYPI_EXTRA}\
+)\
+"
